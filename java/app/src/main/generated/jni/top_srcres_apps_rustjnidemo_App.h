@@ -47,6 +47,14 @@ JNIEXPORT jstring JNICALL Java_top_srcres_apps_rustjnidemo_App_helloFromTestStri
 JNIEXPORT void JNICALL Java_top_srcres_apps_rustjnidemo_App_modifyTestStringFromRust
   (JNIEnv *, jclass, jstring);
 
+/*
+ * Class:     top_srcres_apps_rustjnidemo_App
+ * Method:    actCallFromRust
+ * Signature: (Ljava/lang/String;)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_top_srcres_apps_rustjnidemo_App_actCallFromRust
+  (JNIEnv *, jclass, jstring);
+
 #ifdef __cplusplus
 }
 #endif

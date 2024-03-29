@@ -31,6 +31,11 @@ public class App {
     static native int helloFromTestIntField();
     static native String helloFromTestStringField();
     static native void modifyTestStringFromRust(String input);
+    static String callFromRust(String input) {
+        System.out.println("Method callFromRust was invoked!");
+        return "Java-side received: " + input;
+    }
+    static native String actCallFromRust(String input);
 
     public static void main(String[] args) {
         loadRustLibrary();
@@ -49,5 +54,7 @@ public class App {
 
         modifyTestStringFromRust("string from Java #2");
         System.out.println(testStringFromRust);
+
+        System.out.println("actCallFromRust result: " + actCallFromRust("string from Java #3"));
     }
 }

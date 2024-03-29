@@ -66,3 +66,17 @@ pub extern "system" fn Java_top_srcres_apps_rustjnidemo_App_modifyTestStringFrom
     env.set_static_field(&class, &testStringFromRustId, JValue::from(&testStringFromRustObj))
         .expect("Failed to set static field testStringFromRust");
 }
+
+#[allow(non_snake_case)]
+#[no_mangle]
+pub extern "system" fn Java_top_srcres_apps_rustjnidemo_App_actCallFromRust<'a>(
+    mut env: JNIEnv<'a>, class: JClass<'a>, input: JString<'a>
+) -> jstring {
+    let inputStr: String = env.get_string(&input).expect("Failed to receive the argument: input").into();
+    let testStringFromRust = env.new_string(create_rust_string(&inputStr)).expect("Failed to create Rust string.");
+    let testStringFromRustObj = JObject::from(testStringFromRust);
+    let callFromRustResult = env.call_static_method(&class, "callFromRust", "(Ljava/lang/String;)Ljava/lang/String;", &[JValue::from(&testStringFromRustObj)])
+        .expect("Failed to invoke static method callFromRust");
+    let callFromRustResultObj = callFromRustResult.l().expect("Failed to convert the method result into JObject.");
+    JString::from(callFromRustResultObj).into_raw()
+}
