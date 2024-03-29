@@ -23,10 +23,12 @@ public class App {
     }
 
     static int testInt;
+    static String testString;
 
     static native String hello(String input);
     static native int helloInt(int input);
     static native int helloFromTestIntField();
+    static native String helloFromTestStringField();
 
     public static void main(String[] args) {
         loadRustLibrary();
@@ -39,5 +41,8 @@ public class App {
 
         testInt = 514;
         System.out.println(helloFromTestIntField());
+
+        testString = "String static field from Java";
+        System.out.println(helloFromTestStringField());
     }
 }
