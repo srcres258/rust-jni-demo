@@ -36,6 +36,7 @@ public class App {
         return "Java-side received: " + input;
     }
     static native String actCallFromRust(String input);
+    static native void delayInRust(long timeMillis);
 
     public static void main(String[] args) {
         loadRustLibrary();
@@ -56,5 +57,9 @@ public class App {
         System.out.println(testStringFromRust);
 
         System.out.println("actCallFromRust result: " + actCallFromRust("string from Java #3"));
+
+        System.out.println("Delay in Rust for 2 seconds...");
+        delayInRust(2000);
+        System.out.println("Delay done.");
     }
 }

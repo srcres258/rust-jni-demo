@@ -1,7 +1,9 @@
 
 use jni::JNIEnv;
 use jni::objects::{JClass, JObject, JString, JValue};
-use jni::sys::{jint, jstring};
+use jni::sys::{jint, jlong, jstring};
+use std::thread;
+use std::time::Duration;
 
 fn create_rust_string(src: &str) -> String {
     format!("Rust-created string, {}", src)
@@ -89,4 +91,15 @@ pub extern "system" fn Java_top_srcres_apps_rustjnidemo_App_actCallFromRust<'a>(
         .expect("Failed to invoke static method callFromRust");
     let callFromRustResultObj = callFromRustResult.l().expect("Failed to convert the method result into JObject.");
     JString::from(callFromRustResultObj).into_raw()
+}
+
+#[allow(non_snake_case)]
+#[no_mangle]
+pub extern "system" fn Java_top_srcres_apps_rustjnidemo_App_delayInRust<'a>(
+    _: JNIEnv<'a>,
+    _: JClass<'a>,
+    input: jlong
+) {
+    let inputU = u64::try_from(input).expect("Attempting to call delayInRust with negative millisecond duration.");
+    thread::sleep(Duration::from_millis(inputU));
 }

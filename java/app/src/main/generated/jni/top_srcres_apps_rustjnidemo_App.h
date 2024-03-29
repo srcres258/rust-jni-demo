@@ -55,6 +55,14 @@ JNIEXPORT void JNICALL Java_top_srcres_apps_rustjnidemo_App_modifyTestStringFrom
 JNIEXPORT jstring JNICALL Java_top_srcres_apps_rustjnidemo_App_actCallFromRust
   (JNIEnv *, jclass, jstring);
 
+/*
+ * Class:     top_srcres_apps_rustjnidemo_App
+ * Method:    delayInRust
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_top_srcres_apps_rustjnidemo_App_delayInRust
+  (JNIEnv *, jclass, jlong);
+
 #ifdef __cplusplus
 }
 #endif
