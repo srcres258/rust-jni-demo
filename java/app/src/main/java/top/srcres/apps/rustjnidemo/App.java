@@ -22,8 +22,11 @@ public class App {
         System.load(libPathStr);
     }
 
+    static int testInt;
+
     static native String hello(String input);
     static native int helloInt(int input);
+    static native int helloFromTestIntField();
 
     public static void main(String[] args) {
         loadRustLibrary();
@@ -33,5 +36,8 @@ public class App {
 
         int outputInt = helloInt(114514);
         System.out.println(outputInt);
+
+        testInt = 514;
+        System.out.println(helloFromTestIntField());
     }
 }
