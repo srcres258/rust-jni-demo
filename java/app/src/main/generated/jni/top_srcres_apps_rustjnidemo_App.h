@@ -15,6 +15,14 @@ extern "C" {
 JNIEXPORT jstring JNICALL Java_top_srcres_apps_rustjnidemo_App_hello
   (JNIEnv *, jclass, jstring);
 
+/*
+ * Class:     top_srcres_apps_rustjnidemo_App
+ * Method:    helloInt
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_top_srcres_apps_rustjnidemo_App_helloInt
+  (JNIEnv *, jclass, jint);
+
 #ifdef __cplusplus
 }
 #endif

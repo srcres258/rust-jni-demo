@@ -23,11 +23,15 @@ public class App {
     }
 
     static native String hello(String input);
+    static native int helloInt(int input);
 
     public static void main(String[] args) {
         loadRustLibrary();
 
         String output = hello("string from Java");
         System.out.println(output);
+
+        int outputInt = helloInt(114514);
+        System.out.println(outputInt);
     }
 }
