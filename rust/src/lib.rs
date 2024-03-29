@@ -10,7 +10,9 @@ fn create_rust_string(src: &str) -> String {
 #[allow(non_snake_case)]
 #[no_mangle]
 pub extern "system" fn Java_top_srcres_apps_rustjnidemo_App_hello<'a>(
-    mut env: JNIEnv<'a>, _: JClass<'a>, input: JString<'a>
+    mut env: JNIEnv<'a>,
+    _: JClass<'a>,
+    input: JString<'a>
 ) -> jstring {
     let input: String = env.get_string(&input).expect("Failed to get Java string.").into();
     let output = env.new_string(create_rust_string(&input)).expect("Failed to create Rust string.");
@@ -20,7 +22,9 @@ pub extern "system" fn Java_top_srcres_apps_rustjnidemo_App_hello<'a>(
 #[allow(non_snake_case)]
 #[no_mangle]
 pub extern "system" fn Java_top_srcres_apps_rustjnidemo_App_helloInt<'a>(
-    _: JNIEnv<'a>, _: JClass<'a>, input: jint
+    _: JNIEnv<'a>,
+    _: JClass<'a>,
+    input: jint
 ) -> jint {
     input + 1919810
 }
@@ -28,7 +32,8 @@ pub extern "system" fn Java_top_srcres_apps_rustjnidemo_App_helloInt<'a>(
 #[allow(non_snake_case)]
 #[no_mangle]
 pub extern "system" fn Java_top_srcres_apps_rustjnidemo_App_helloFromTestIntField<'a>(
-    mut env: JNIEnv<'a>, class: JClass<'a>
+    mut env: JNIEnv<'a>,
+    class: JClass<'a>
 ) -> jint {
     let testInt = env.get_static_field(&class, "testInt", "I")
         .expect("Failed to get static field testInt")
@@ -40,7 +45,8 @@ pub extern "system" fn Java_top_srcres_apps_rustjnidemo_App_helloFromTestIntFiel
 #[allow(non_snake_case)]
 #[no_mangle]
 pub extern "system" fn Java_top_srcres_apps_rustjnidemo_App_helloFromTestStringField<'a>(
-    mut env: JNIEnv<'a>, class: JClass<'a>
+    mut env: JNIEnv<'a>,
+    class: JClass<'a>
 ) -> jstring {
     let testStringObj = env.get_static_field(&class, "testString", "Ljava/lang/String;")
         .expect("Failed to get static field testString")
@@ -56,7 +62,9 @@ pub extern "system" fn Java_top_srcres_apps_rustjnidemo_App_helloFromTestStringF
 #[allow(non_snake_case)]
 #[no_mangle]
 pub extern "system" fn Java_top_srcres_apps_rustjnidemo_App_modifyTestStringFromRust<'a>(
-    mut env: JNIEnv<'a>, class: JClass<'a>, input: JString<'a>
+    mut env: JNIEnv<'a>,
+    class: JClass<'a>,
+    input: JString<'a>
 ) {
     let inputStr: String = env.get_string(&input).expect("Failed to receive the argument: input").into();
     let testStringFromRust = env.new_string(create_rust_string(&inputStr)).expect("Failed to create Rust string.");
@@ -70,7 +78,9 @@ pub extern "system" fn Java_top_srcres_apps_rustjnidemo_App_modifyTestStringFrom
 #[allow(non_snake_case)]
 #[no_mangle]
 pub extern "system" fn Java_top_srcres_apps_rustjnidemo_App_actCallFromRust<'a>(
-    mut env: JNIEnv<'a>, class: JClass<'a>, input: JString<'a>
+    mut env: JNIEnv<'a>,
+    class: JClass<'a>,
+    input: JString<'a>
 ) -> jstring {
     let inputStr: String = env.get_string(&input).expect("Failed to receive the argument: input").into();
     let testStringFromRust = env.new_string(create_rust_string(&inputStr)).expect("Failed to create Rust string.");
