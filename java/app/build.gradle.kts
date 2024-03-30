@@ -31,6 +31,9 @@ java {
 application {
     // Define the main class for the application.
     mainClass = "top.srcres.apps.rustjnidemo.App"
+    applicationDefaultJvmArgs = listOf(
+            "-Djava.library.path=../../rust/target/release/"
+    )
 }
 
 tasks.named<Test>("test") {

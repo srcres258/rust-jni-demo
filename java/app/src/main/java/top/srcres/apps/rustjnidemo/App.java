@@ -8,18 +8,8 @@ import java.nio.file.Path;
 
 public class App {
     static void loadRustLibrary() {
-        String currentPathStr = System.getProperty("user.dir");
-        System.out.println("Program is running in: " + currentPathStr);
-
-        Path currentPath = new File(currentPathStr).toPath();
-        Path libPath = currentPath.getParent().getParent()
-                .resolve("rust")
-                .resolve("target")
-                .resolve("release")
-                .resolve("librust_jni_demo.so");
-        String libPathStr = libPath.toFile().getAbsolutePath();
-        System.out.println("Loading Rust library at: " + libPathStr);
-        System.load(libPathStr);
+        System.out.println(System.getProperty("java.library.path"));
+        System.loadLibrary("rust_jni_demo");
     }
 
     static int testInt;
